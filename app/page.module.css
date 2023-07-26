@@ -1,0 +1,333 @@
+/* background   */
+.bg {
+  background-image: url("/background.png");
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+  }
+  @font-face {
+    font-family: 'Cascadia Code', 'Courier New', 'monospace';
+    src: url('/Cascadia.ttf') format('truetype');
+    /* Add more font formats if necessary */
+    /* Specify different paths based on your project structure */
+  }
+  .custom-background {
+    background-image: url('/background.png');
+  }
+/* till here */
+/* page.module.css */
+.navbarContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999; /* Ensures Navbar stays on top of the content */
+}
+/* page.module.css */
+
+/* Add styles for HomeNavbar */
+.homeNavbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* Add other styles as needed */
+}
+
+/* Rest of your CSS styles for other components and elements */
+
+/* components/navbar.module.css */
+
+
+
+/* Add other existing CSS styles here */
+
+/* Adjust other existing CSS styles as needed */
+
+ .eventclass{
+    padding: 15px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    /* border: 2px dashed #3ACD6B; */
+    background-image: repeating-linear-gradient(-40deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px), repeating-linear-gradient(50deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px), repeating-linear-gradient(140deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px), repeating-linear-gradient(230deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px);
+background-size: 4px calc(100% + 66.58px), calc(100% + 66.58px) 4px, 4px calc(100% + 66.58px) , calc(100% + 66.58px) 4px;
+background-position: 0 0, 0 0, 100% 0, 0 100%;
+background-repeat: no-repeat;
+animation: borderAnimation 2.5s infinite linear;
+  }
+  @keyframes borderAnimation {
+    from { background-position: 0 0, -66.58px 0, 100% -66.58px, 0 100%; }
+    to { background-position: 0 -66.58px, 0 0, 100% 0, -66.58px 100%; }
+    }
+  .customButton {
+    margin-right: 1rem;
+    background-color: #3ACD6B !important;
+    border-color: #3ACD6B !important;
+    color: black !important;
+  }
+  .whitetext{
+    color: white !important;
+
+  }
+  .navbar{
+    height: 50px !important;
+  }
+  .radioGroup {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    
+  }
+
+  .radioItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: red !important;
+  }
+  .radioButton {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  .radioLabel {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid #3ACD6B;
+    border-radius: 4px;
+    color: #3ACD6B;
+  }
+  
+  .radioButton:checked + .radioLabel {
+    background-color: #3ACD6B;
+    color: white;
+  }
+  
+  .heading {
+    padding-top: 8rem;
+    color: rgb(252, 3, 3);
+  }
+  
+  .logo {
+    margin-right: auto;
+    margin-left: 0;
+  }
+  
+  @media (max-width: 767px) {
+    .navbar-toggler {
+      order: 1;
+    }
+    .logo {
+      order: 2;
+      margin-right: 0;
+    }
+    .custom-background {
+      background-image: url('/backgroundPhone.png');
+    }
+    .navbar-collapse {
+      order: 3;
+    }
+  }
+
+  .glogo {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    left: 60px;
+    width: 100px;
+    height: 100px;
+    margin-right: 250px;
+  }
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  .navbar-toggler {
+    border: none;
+    background-color: transparent;
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url('/CSC_Logo_Dark_name (1).svg');
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+.navdiv{
+    width: 1920px;
+    height: 95px;
+    background-color: white;
+}
+.navlogo{
+    height: 95px;
+    width: 95px;
+    position: relative;
+    left: 50px;
+}
+.navelements{
+    display: flex;
+    /* border: 2px solid red; */
+    width: 850px;
+    position: relative;
+    top: -30px;
+    color: black;
+    left: 150px;
+    font-family: 'Cascadia Code', sans-serif;
+    font-size: larger;
+}
+.gfont{
+    
+    font-size: larger;
+}
+.btn-group {
+    margin-right: 0.5rem;
+  }
+
+
+  @media (max-width: 768px) {
+    .glogo {
+      order: -1;
+    }
+    .navbar {
+      justify-content: space-between;
+    }
+    .collapse.navbar-collapse {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 1rem;
+      width: 100%;
+    }
+  
+    .navbar-nav {
+      width: 100%;
+      justify-content: center;
+    }
+  
+    .btn-group {
+      margin-right: auto;
+    margin-left: auto;
+      margin-top: 1rem;
+    }
+  }
+
+  .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Update alignment to flex-start */
+    min-height: 210px;
+    position: relative;
+  }
+  
+  .contact {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .title {
+    color: white;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .icon {
+    color: white;
+    margin-right: 5px;
+    font-size: 24px;
+  }
+  
+  .heart {
+    color: red;
+    font-size: 27px;
+    width: 20px;
+  }
+  
+  .contactInfo p {
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .social {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .madeWithLove {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      min-height: 300px; /* Adjust the height to accommodate the stacked elements */
+    }
+  
+    .contact,
+    .social {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .social {
+      order: -1; /* Bring the social media section above the contact section */
+    }
+  }
+  
+/* LogoSection.module.css */
+.logo-container_h {
+  width: 50vw; /* Set the width to cover 50% of the viewport width */
+  height: 100vh; /* Set the height to cover the full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_h {
+  max-width: 100%; /* Make sure the image doesn't exceed the container's width */
+  max-height: 100%; /* Make sure the image doesn't exceed the container's height */
+}
+
+  
+  
+  
+  
+  
+
+  
+  
