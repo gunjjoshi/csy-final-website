@@ -139,7 +139,7 @@ animation: borderAnimation 2.5s infinite linear;
     left: 0;
     width: 100px;
     height: 100px;
-    margin-right: 250px;
+    margin-right: 0px;
   }
   .navbar-brand {
     display: flex;
