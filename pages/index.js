@@ -1,10 +1,9 @@
 // pages/Home_Page.js
 // pages/index.js
 import React from 'react';
-import styles from '../app/page.module.css';
-import { useState, useEffect } from 'react';
-import Navbar from '../app/components/Navbar';
+import Navbar from '../app/components/navbar';
 import CyberSecurityClub from '../app/components/homeContent';
+import Footer from '../app/components/footer';
 
 // Rest of your code remains unchanged
 
@@ -55,7 +54,7 @@ const Home_Page = () => {
             {/* Conditionally render the HomeNavbar based on the showNavbar state */}
             <Navbar />
             <CyberSecurityClub />
-            <Navbar />
+            <Footer />
         </>
     );
 };
