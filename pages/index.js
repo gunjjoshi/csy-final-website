@@ -1,7 +1,6 @@
 // pages/Home_Page.js
 // pages/index.js
 import React from 'react';
-import HomeNavbar from '../app/components/HomeNavbar';
 import styles from '../app/page.module.css';
 import { useState, useEffect } from 'react';
 import Navbar from '../app/components/Navbar';
