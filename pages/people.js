@@ -37,7 +37,7 @@ const People = () => {
         }}
       />
       <Navbar position="fixed" />
-      <div className={styles.bg}>
+      <div className={styles.bg} style={{ fontFamily: 'Cascadia Code, monospace' }}>
         <div
           className={styles.heading}
           style={{ marginTop: "10px", color: "rgb(252, 3, 3)" }}

@@ -73,6 +73,19 @@
   }
 }
 
+@font-face {
+  font-family: 'Cascadia Code';
+  src: url('../public/fonts/Cascadia.ttf') format('truetype');
+  /* Add more font formats if necessary */
+  /* Specify different paths based on your project structure */
+}
+
+/* Additional global styles can be added here if needed */
+body {
+  font-family: 'Cascadia Code', 'Courier New', monospace; /* Fallback fonts in case Cascadia Code doesn't load */
+}
+
+
 * {
   box-sizing: border-box;
   padding: 0;

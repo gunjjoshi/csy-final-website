@@ -16,7 +16,7 @@ const Events = () => {
     };
 
     return (
-        <div class="custom-background">
+        <div class="custom-background" style={{ fontFamily: 'Cascadia Code, monospace' }}>
             <Head>
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />

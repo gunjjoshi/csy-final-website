@@ -9,7 +9,6 @@ import Navbar from "../app/components/navbar";
 import Footer from '../app/components/footer';
 const Contact = () => {
     return (
-        // <div>This is people page</div>
         <div>
             <Head>
                 <meta charset="utf-8" />
@@ -37,7 +36,7 @@ const Contact = () => {
                 }}
             />
             <Navbar position="fixed" />
-            <div className={styles.bg}>
+            <div className={styles.bg} style={{ fontFamily: 'Cascadia Code, monospace' }}>
                 <div
                     className={styles.heading}
                     style={{ marginTop: "10px", color: "rgb(252, 3, 3)" }}
