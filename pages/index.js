@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../app/components/navbar';
 import CyberSecurityClub from '../app/components/homeContent';
 import Footer from '../app/components/footer';
+import Head from 'next/head';
 
 const Home_Page = () => {
     const [windowWidth, setWindowWidth] = useState(0);
@@ -41,6 +42,12 @@ const Home_Page = () => {
     }, []);
     return (
         <>
+            <Head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>CSY Club | Home</title>
+                <link rel="icon" type="image/x-icon" href="CSC_Logo.ico"></link>
+            </Head>
             <style
                 dangerouslySetInnerHTML={{
                     __html: `

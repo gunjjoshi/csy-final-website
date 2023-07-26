@@ -13,6 +13,8 @@ const Contact = () => {
             <Head>
                 <meta charset="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>CSY Club | Contact</title>
+                <link rel="icon" type="image/x-icon" href="CSC_Logo.ico"></link>
             </Head>
 
             <link
