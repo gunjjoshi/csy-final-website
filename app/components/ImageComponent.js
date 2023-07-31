@@ -2,12 +2,8 @@
 import styles from "../page.module.css";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitter,
-  faGithub,
-  faLinkedin,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
+import { FaPhone, FaEnvelope, FaTwitter, FaInstagram, FaLinkedin,FaGithub, FaDiscord } from 'react-icons/fa';
+
 import Link from "next/link";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Image from "next/image";
@@ -50,23 +46,7 @@ const ImageComponent = ({
                 margin: "10px",
               }}
             >
-              <div style={{ margin: "200px 0px" }}>
-                <a href="#">  <FontAwesomeIcon
-                  icon={faTwitter}
-                  className={styles.icon}
-                /></a>
-              </div>
-              <div style={{ margin: "0px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} className={styles.icon}/>
-                </a>
-              </div>
-
-              <div style={{ margin: "0px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-                </a>
-              </div>
+              
             </div>
 
             <br />
@@ -84,21 +64,7 @@ const ImageComponent = ({
               {name2}
             </h5>
             <div  style={{ color: "white",display: "flex",justifyContent: "space-evenly",margin: "10px",}}>
-            <div style={{ margin: "200px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-                </a>
-              </div>
-              <div style={{ margin: "0px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-                </a>
-              </div>
-              <div style={{ margin: "0px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-                </a>
-              </div>
+            
             </div>
           </Col>
           <Col xs={12} md={4}>
@@ -120,21 +86,7 @@ const ImageComponent = ({
                 margin: "10px",
               }}
             >
-              <div style={{ margin: "200px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-                </a>
-              </div>
-              <div style={{ margin: "0px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-                </a>
-              </div>
-              <div style={{ margin: "0px 5px" }}>
-                <a href="#">
-                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-                </a>
-              </div>
+              
             </div>
           </Col>
         </Row>
