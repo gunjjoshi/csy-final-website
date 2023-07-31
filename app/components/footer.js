@@ -52,10 +52,10 @@ const Footer = () => {
             <div style={socialStyle}>
                 <h3 style={{ color: 'white', fontSize: '25px', marginBottom: '10px' }}>Social Media</h3>
                 <div style={{ marginBottom: '30px' }}>
-                    <a href="#"><FaTwitter style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
-                    <a href="#"><FaInstagram style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
-                    <a href="#"><FaLinkedin style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
-                    <a href="#"><FaDiscord style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
+                    <a href="https://twitter.com/CsyClub_IIITK?t=YyDngl3GXB750SadaoFM_g&s=08"><FaTwitter style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
+                    <a href="https://instagram.com/csyclub_iiitkottayam?igshid=YmMyMTA2M2Y="><FaInstagram style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
+                    <a href="https://www.linkedin.com/company/csyclub-iiitkottayam/"><FaLinkedin style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
+                    <a href="https://discord.gg/qPq6mHZE"><FaDiscord style={{ marginRight: '5px', fontSize: '24px', color: 'white' }} /></a>
                 </div>
             </div>
             <div style={madeWithLoveStyle}>
