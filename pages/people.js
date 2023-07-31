@@ -59,20 +59,20 @@ const People = () => {
         <TextComponent title="Patrons" />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="/images/director.jpg"
           name1="Dr. Rajiv V Dharaskar"
-          imageSrc2="/images.png"
+          imageSrc2="images/registrar1.jpg"
           name2="Dr. M. Radhakrishnan"
-          imageSrc3="/images.png"
+          imageSrc3="/images/pic.jpg"
           name3="Prof P. Mohanan"
         />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="/images/ebin1.jpg"
           name1="Dr. Ebin Deni Raj"
-          imageSrc2="/images.png"
+          imageSrc2="/images/panchami1.jpg"
           name2="Dr. Panchami V"
-          imageSrc3="/images.png"
+          imageSrc3="/images/lavanya.jpg"
           name3="Dr. Lavanya Settipalli"
         />
         <br />
@@ -81,11 +81,11 @@ const People = () => {
         <TextComponent title="Club Leads" />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="images/tanuj1.jpg"
           name1="Tanuj Karteek Allena"
-          imageSrc2="/images.png"
+          imageSrc2="/images/ajay.jpg"
           name2="Ajay Krishna Narayanasetti"
-          imageSrc3="/images.png"
+          imageSrc3="/images/priyatham.jpg"
           name3="Priyatham Darisi"
         />
         <br />
@@ -93,20 +93,20 @@ const People = () => {
         <TextComponent title="Core Team(2021)" />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="/images/akhilesh.jpg"
           name1="Akhilesh"
-          imageSrc2="/images.png"
+          imageSrc2="/images/divyesh.jpeg"
           name2="Divyesh"
-          imageSrc3="/images.png"
+          imageSrc3="/images/jayant1.jpg"
           name3="Jayant"
         />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="/images/arnav.jpg"
           name1="Arnav"
-          imageSrc2="/images.png"
+          imageSrc2="/images/shivani1.jpg"
           name2="Shivani"
-          imageSrc3="/images.png"
+          imageSrc3="/images/richa.jpg"
           name3="Richa"
         />
         <br />
@@ -115,29 +115,29 @@ const People = () => {
         <TextComponent title="Core Team(2022)" />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="/images/gunj1.jpg"
           name1="Gunj"
-          imageSrc2="/images.png"
+          imageSrc2="/images/sarthak1.jpg"
           name2="Sarthak"
-          imageSrc3="/images.png"
+          imageSrc3="/images/abel2.jpg"
           name3="Abel"
         />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="images/vedanta3.jpg"
           name1="Vedanta"
-          imageSrc2="/images.png"
+          imageSrc2="/images/shravasthi.jpg"
           name2="Shravasti"
-          imageSrc3="/images.png"
+          imageSrc3="images/kaustubh1.jpg"
           name3="Kaustubh"
         />
         <br />
         <ImageComponent
-          imageSrc1="/images.png"
+          imageSrc1="/images/purandhar.jpg"
           name1="Purandhar"
-          imageSrc2="/images.png"
+          imageSrc2="CSC_Logo.png"
           name2="Goutham"
-          imageSrc3="/images.png"
+          imageSrc3="/images/gaurav1.jpg"
           name3="Gaurav"
         />
         <br />
