@@ -15,7 +15,6 @@ import Image from "next/image";
 const ImageComponent = ({
   imageSrc1,
   name1,
-
   imageSrc2,
   name2,
   imageSrc3,
@@ -51,19 +50,22 @@ const ImageComponent = ({
                 margin: "10px",
               }}
             >
-              <div style={{ margin: "200 0px" }}>
-                <FontAwesomeIcon
+              <div style={{ margin: "200px 0px" }}>
+                <a href="#">  <FontAwesomeIcon
                   icon={faTwitter}
-                  style={{ fontSize: "20px" }}
-                />
+                  className={styles.icon}
+                /></a>
               </div>
-              <div style={{ margin: "0 5px" }}>
+              <div style={{ margin: "0px 5px" }}>
+                <a href="#">
+                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} className={styles.icon}/>
+                </a>
+              </div>
 
+              <div style={{ margin: "0px 5px" }}>
+                <a href="#">
                 <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
-
-              </div>
-              <div style={{ margin: "0 5px" }}>
-                <FontAwesomeIcon icon={faInstagram} style={{ fontSize: "20px" }} />
+                </a>
               </div>
             </div>
 
@@ -81,25 +83,21 @@ const ImageComponent = ({
             <h5 style={{ color: "white" }} align="center" className="whitetext">
               {name2}
             </h5>
-            <div
-              style={{
-                color: "white",
-                display: "flex",
-                justifyContent: "space-evenly",
-                margin: "10px",
-              }}
-            >
-              <div style={{ margin: "200 0px" }}>
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  style={{ fontSize: "20px" }}
-                />
-              </div>
-              <div style={{ margin: "0 5px" }}>
+            <div  style={{ color: "white",display: "flex",justifyContent: "space-evenly",margin: "10px",}}>
+            <div style={{ margin: "200px 5px" }}>
+                <a href="#">
                 <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
+                </a>
               </div>
-              <div style={{ margin: "0 5px" }}>
-                <FontAwesomeIcon icon={faInstagram} style={{ fontSize: "20px" }} />
+              <div style={{ margin: "0px 5px" }}>
+                <a href="#">
+                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
+                </a>
+              </div>
+              <div style={{ margin: "0px 5px" }}>
+                <a href="#">
+                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
+                </a>
               </div>
             </div>
           </Col>
@@ -122,19 +120,21 @@ const ImageComponent = ({
                 margin: "10px",
               }}
             >
-              <div style={{ margin: "200 0px" }}>
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  style={{ fontSize: "20px" }}
-                />
-              </div>
-              <div style={{ margin: "0 5px" }}>
+              <div style={{ margin: "200px 5px" }}>
+                <a href="#">
                 <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
+                </a>
               </div>
-              <div style={{ margin: "0 5px" }}>
-                <FontAwesomeIcon icon={faInstagram} style={{ fontSize: "20px" }} />
+              <div style={{ margin: "0px 5px" }}>
+                <a href="#">
+                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
+                </a>
               </div>
-
+              <div style={{ margin: "0px 5px" }}>
+                <a href="#">
+                <FontAwesomeIcon icon={faGithub} style={{ fontSize: "20px" }} />
+                </a>
+              </div>
             </div>
           </Col>
         </Row>
