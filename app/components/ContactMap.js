@@ -62,6 +62,8 @@ const Contact = () => {
           flex-wrap: wrap;
           margin: 130px;
           flex-direction: column;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .contact-details {

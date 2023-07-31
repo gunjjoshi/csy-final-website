@@ -1,14 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../app/page.module.css";
+
 import Script from "next/script";
-import MediaComponent from "../app/components/MediaComponent";
-import TextComponent from "../app/components/TextComponent";
-import ImageComponent from "../app/components/ImageComponent";
-import Navbar from "../app/components/navbar";
-import Footer from '../app/components/footer';
+
 import { useState } from "react";
-import MediaComponent2 from "../app/components/MediaComponent2";
+
 import ContactMap from "../app/components/ContactMap";
 const Contact = () => {
     const [isChecked, setIsChecked] = useState(true);
