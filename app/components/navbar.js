@@ -1,9 +1,59 @@
 "use client"
 import styles from '../page.module.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { UserAuth } from "../context/AuthContext";
+import { auth } from '../firebase';
 import { FaPhone, FaEnvelope, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaDiscord } from 'react-icons/fa';
 
 const Navbar = () => {
+    const { user: authUser, googleSignIn, logOut } = UserAuth();
+    const [user, setUser] = useState(authUser);
+
+    const handleSignIn = async () => {
+        try {
+            await googleSignIn();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleSignOut = async () => {
+        try {
+            await logOut();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+            if (currentUser) {
+                const userEmail = currentUser.email;
+                const allowedDomain = '@iiitkottayam.ac.in';
+
+                if (userEmail.endsWith(allowedDomain)) {
+                    setUser(currentUser);
+                } else {
+                    auth.signOut();
+                }
+            } else {
+                setUser(null);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const checkAuthentication = async () => {
+            await new Promise((resolve) => setTimeout(resolve, 50));
+            setLoading(false);
+        };
+        checkAuthentication();
+    }, [user]);
+
     return (
         <div>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -54,9 +104,31 @@ const Navbar = () => {
                                 </a>
                             </li>
                         </ul>
-                        <button type="button" className={`btn btn-success ${styles.customButton}`}>
+                        {/* <button type="button" className={`btn btn-success ${styles.customButton}`}>
                             Sign In
-                        </button>
+                        </button> */}
+                        {!loading && (
+                            <div className="d-flex">
+                                {user ? (
+                                    <div className="d-flex">
+                                        <p className="my-auto">{user.displayName} &nbsp;&nbsp;  </p>
+                                        <button onClick={handleSignOut} type="button" className={`btn btn-danger ${styles.customButton} mx-2`}>
+                                            Sign out
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button onClick={handleSignIn} type="button" className={`btn btn-success ${styles.customButton} mx-2`}>
+                                        Sign In
+                                    </button>
+                                )}
+
+                                {user && (
+                                    <button type="button" className={`btn btn-primary ${styles.customButton} mx-2`}>
+                                        Join
+                                    </button>
+                                )}
+                            </div>
+                        )}
                     </div>
                 </div>
             </nav>

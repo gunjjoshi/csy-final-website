@@ -1,9 +1,10 @@
-// pages/Home_Page.js
 import React, { useState, useEffect } from 'react';
 import Navbar from '../app/components/navbar';
 import CyberSecurityClub from '../app/components/homeContent';
 import Footer from '../app/components/footer';
 import Head from 'next/head';
+import { AuthContextProvider } from '../app/context/AuthContext';
+import 'firebase/auth';
 
 const Home_Page = () => {
     const [windowWidth, setWindowWidth] = useState(0);
@@ -41,16 +42,17 @@ const Home_Page = () => {
         };
     }, []);
     return (
-        <>
-            <Head>
-                <meta charset="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>CSY Club | Home</title>
-                <link rel="icon" type="image/x-icon" href="CSC_Logo.ico"></link>
-            </Head>
-            <style
-                dangerouslySetInnerHTML={{
-                    __html: `
+        <AuthContextProvider>
+            <>
+                <Head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <title>CSY Club | Home</title>
+                    <link rel="icon" type="image/x-icon" href="CSC_Logo.ico"></link>
+                </Head>
+                <style
+                    dangerouslySetInnerHTML={{
+                        __html: `
             body {
               font-family: 'Cascadia Code', 'Courier New', 'monospace';
               background-image: url("background.png");
@@ -65,63 +67,63 @@ const Home_Page = () => {
               transform: translateY(0); /* Move navbar to visible position */
             }
           `,
-                }}
-            />
-            {/* Conditionally render the HomeNavbar based on the showNavbar state */}
-            <Navbar />
-            {windowWidth > 768 ? ( // Large screens layout
-                <div style={{ display: 'flex', fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', background: 'url("background.png")', backgroundSize: 'cover', height: '100vh' }}>
-                    {/* Left Half - Logo */}
-                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                        <div style={logoStyles}>
-                            <img src="/CSC_Logo.png" alt="Logo" style={{ width: '120%', height: '120%', objectFit: 'contain' }} />
+                    }}
+                />
+                {/* Conditionally render the HomeNavbar based on the showNavbar state */}
+                <Navbar />
+                {windowWidth > 768 ? ( // Large screens layout
+                    <div style={{ display: 'flex', fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', background: 'url("background.png")', backgroundSize: 'cover', height: '100vh' }}>
+                        {/* Left Half - Logo */}
+                        <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                            <div style={logoStyles}>
+                                <img src="/CSC_Logo.png" alt="Logo" style={{ width: '120%', height: '120%', objectFit: 'contain' }} />
+                            </div>
+                        </div>
+
+                        {/* Right Half - Headings and Buttons */}
+                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                            <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
+                            <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem', marginRight: '2rem' }}>
+                                Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
+                            </div>
+                            <div >
+                                <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginRight: '3.2rem' }}>Sign Up</button>
+                                <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Login</button>
+                            </div>
                         </div>
                     </div>
+                ) : ( // Small screens layout (same as before)
+                    <div style={{ marginTop: '7.5rem' }}>
+                        <div style={{ fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', background: 'url("background.png")', backgroundSize: 'cover', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                            {/* Logo Container */}
+                            <div style={logoStyles}>
+                                <img src="/CSC_Logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', marginTop: '10rem', marginBottom: '10rem' }} />
+                            </div>
 
-                    {/* Right Half - Headings and Buttons */}
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                        <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
-                        <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem', marginRight: '2rem' }}>
-                            Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
-                        </div>
-                        <div >
-                            <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginRight: '3.2rem' }}>Sign Up</button>
-                            <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Login</button>
-                        </div>
-                    </div>
-                </div>
-            ) : ( // Small screens layout (same as before)
-                <div style={{ marginTop: '7.5rem' }}>
-                    <div style={{ fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', background: 'url("background.png")', backgroundSize: 'cover', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                        {/* Logo Container */}
-                        <div style={logoStyles}>
-                            <img src="/CSC_Logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', marginTop: '10rem', marginBottom: '10rem' }} />
-                        </div>
+                            {/* Heading */}
+                            <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
 
-                        {/* Heading */}
-                        <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
+                            {/* Description */}
+                            <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem' }}>
+                                Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
+                            </div>
 
-                        {/* Description */}
-                        <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem' }}>
-                            Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
-                        </div>
+                            {/* Buttons */}
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '10rem' }}>
+                                <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Sign Up</button>
+                                <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginBottom: '30rem' }}>Login</button>
+                            </div>
 
-                        {/* Buttons */}
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '10rem' }}>
-                            <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Sign Up</button>
-                            <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginBottom: '30rem' }}>Login</button>
-                        </div>
-
-                        {/* Arrow */}
-                        {/* <div style={{ marginTop: '2rem', marginBottom: '10rem' }}>
+                            {/* Arrow */}
+                            {/* <div style={{ marginTop: '2rem', marginBottom: '10rem' }}>
                         <img src="/arrow.svg" alt="Arrow" style={{ width: '30px', marginBottom: '10rem', height: '30px' }} />
                     </div> */}
+                        </div>
                     </div>
-                </div>
-            )}
-            <CyberSecurityClub />
-            <Footer />
-        </>
+                )}
+                <CyberSecurityClub />
+                <Footer />
+            </></AuthContextProvider>
     );
 };
 
