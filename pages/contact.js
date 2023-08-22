@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-
+import { AuthContextProvider } from "../app/context/AuthContext";
 import Script from "next/script";
 
 import { useState } from "react";
@@ -14,17 +14,18 @@ const Contact = () => {
     };
 
     return (
-        <div class="custom-background" style={{ fontFamily: 'Cascadia Code, monospace' }}>
-            <Head>
-                <meta charset="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>CSY Club | Events</title>
-            </Head>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-            <link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet" />
-            <style
-                dangerouslySetInnerHTML={{
-                    __html: `
+        <AuthContextProvider>
+            <div class="custom-background" style={{ fontFamily: 'Cascadia Code, monospace' }}>
+                <Head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <title>CSY Club | Events</title>
+                </Head>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+                <link href="https://fonts.cdnfonts.com/css/cascadia-code" rel="stylesheet" />
+                <style
+                    dangerouslySetInnerHTML={{
+                        __html: `
         body {
             font-family: 'Cascadia Code', 'Courier New', 'monospace';
           background-image: url("background.png");
@@ -32,19 +33,19 @@ const Contact = () => {
         background-repeat: no-repeat;
         }
       `,
-                }}
-            />
+                    }}
+                />
 
 
 
-            <ContactMap />
+                <ContactMap />
 
-            <Script
-                src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-                crossorigin="anonymous"
-            />
-        </div>
+                <Script
+                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+                    crossorigin="anonymous"
+                />
+            </div></AuthContextProvider>
     );
 };
 

@@ -13,9 +13,13 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
-    const googleSignIn = () => {
+    const googleSignIn = async () => {
         const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider);
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            console.error("Google Sign-In Error:", error);
+        }
     };
 
     const logOut = () => {

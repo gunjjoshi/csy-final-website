@@ -3,11 +3,25 @@ import styles from '../page.module.css';
 import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
 import { auth } from '../firebase';
+import { useRouter } from 'next/router';
+import Popup from './Popup';
 import { FaPhone, FaEnvelope, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaDiscord } from 'react-icons/fa';
 
 const Navbar = () => {
+    const router = useRouter();
     const { user: authUser, googleSignIn, logOut } = UserAuth();
     const [user, setUser] = useState(authUser);
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
+
+    const handleShowPopup = (message) => {
+        setPopupMessage(message);
+        setShowPopup(true);
+    };
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
 
     const handleSignIn = async () => {
         try {
@@ -20,6 +34,7 @@ const Navbar = () => {
     const handleSignOut = async () => {
         try {
             await logOut();
+            router.push('/');
         } catch (error) {
             console.log(error);
         }
@@ -33,7 +48,11 @@ const Navbar = () => {
 
                 if (userEmail.endsWith(allowedDomain)) {
                     setUser(currentUser);
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('userEmail', userEmail);
+                    window.history.replaceState(null, '', url);
                 } else {
+                    handleShowPopup('Please use your college email to Sign Up.')
                     auth.signOut();
                 }
             } else {
@@ -53,6 +72,10 @@ const Navbar = () => {
         };
         checkAuthentication();
     }, [user]);
+
+    const handleButtonClick = () => {
+        router.push('/signup?fromButton=true');
+    };
 
     return (
         <div>
@@ -123,7 +146,7 @@ const Navbar = () => {
                                 )}
 
                                 {user && (
-                                    <button type="button" className={`btn btn-primary ${styles.customButton} mx-2`}>
+                                    <button onClick={handleButtonClick} type="button" className={`btn btn-primary ${styles.customButton} mx-2`}>
                                         Join
                                     </button>
                                 )}
@@ -132,8 +155,13 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
+            {showPopup && (
+                <Popup message={popupMessage} onClose={handleClosePopup} />
+            )}
         </div>
     );
 };
 
 export default Navbar;
+
+

@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import Navbar from '../app/components/navbar';
 import CyberSecurityClub from '../app/components/homeContent';
@@ -81,15 +82,15 @@ const Home_Page = () => {
                         </div>
 
                         {/* Right Half - Headings and Buttons */}
-                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '70px' }}>
                             <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
                             <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem', marginRight: '2rem' }}>
                                 Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
                             </div>
-                            <div >
+                            {/* <div >
                                 <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginRight: '3.2rem' }}>Sign Up</button>
                                 <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Login</button>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 ) : ( // Small screens layout (same as before)
@@ -109,10 +110,10 @@ const Home_Page = () => {
                             </div>
 
                             {/* Buttons */}
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '10rem' }}>
+                            {/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '10rem' }}>
                                 <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Sign Up</button>
                                 <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginBottom: '30rem' }}>Login</button>
-                            </div>
+                            </div> */}
 
                             {/* Arrow */}
                             {/* <div style={{ marginTop: '2rem', marginBottom: '10rem' }}>
