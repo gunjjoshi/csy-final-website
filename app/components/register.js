@@ -93,6 +93,7 @@ const StudentForm = () => {
                             background-size: cover;
                             background-repeat: no-repeat;
                         }
+
                     `,
                     }}
                 />
