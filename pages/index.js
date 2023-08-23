@@ -94,7 +94,7 @@ const Home_Page = () => {
                         </div>
                     </div>
                 ) : ( // Small screens layout (same as before)
-                    <div style={{ marginTop: '7.5rem' }}>
+                    <div style={{ marginTop: '-13.5rem', marginBottom: '17.5rem' }}>
                         <div style={{ fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', background: 'url("background.png")', backgroundSize: 'cover', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             {/* Logo Container */}
                             <div style={logoStyles}>
