@@ -1,17 +1,22 @@
-"use client"
 import { useState } from 'react';
 import { UserAuth } from '../context/AuthContext';
 import { AuthContextProvider } from '../context/AuthContext';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Popup from './Popup';
-//test comment
+import { auth, usersRef, database } from '../firebase';
+import { get, ref } from 'firebase/database';
+import 'firebase/auth';
+import 'firebase/database';
+
 const StudentForm = () => {
     const router = useRouter();
     const { user, googleSignIn, logOut } = UserAuth();
     const [loading, setLoading] = useState(true);
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [emailExists, setEmailExists] = useState(false);
 
     const handleShowPopup = (message) => {
         setPopupMessage(message);
@@ -20,6 +25,11 @@ const StudentForm = () => {
 
     const handleClosePopup = () => {
         setShowPopup(false);
+
+        // After closing the success popup, redirect the user to the homepage
+        if (formSubmitted) {
+            router.push('/');
+        }
     };
 
     useEffect(() => {
@@ -29,6 +39,7 @@ const StudentForm = () => {
         };
         checkAuthentication();
     }, [user]);
+
     const [userData, setUserData] = useState({
         fullName: "",
         roll: "",
@@ -42,36 +53,67 @@ const StudentForm = () => {
         console.log('Submitted:', { fullName, roll, interests });
 
         if (fullName && roll && interests) {
-            if (user?.email?.endsWith('@iiitkottayam.ac.in')) {
-                const res = await fetch("https://csyclub-1e1af-default-rtdb.firebaseio.com/userDataRecords.json", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        fullName, roll, email: user.email, interests
-                    }),
+            const usersRef = ref(database, 'userDataRecords');
+
+            get(usersRef)
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        let emailExists = false;
+                        snapshot.forEach((childSnapshot) => {
+                            const user = childSnapshot.val();
+                            const userEmail = auth.currentUser.email;
+
+                            if (user.email === userEmail) {
+                                emailExists = true;
+                                return; // Exit the loop when a match is found
+                            }
+                        });
+
+                        if (emailExists) {
+                            handleShowPopup('You have already registered.');
+                            return; // Prevent form submission
+                        } else {
+                            // Continue with registration
+                            if (user?.email?.endsWith('@iiitkottayam.ac.in')) {
+                                fetch("https://csyclub-1e1af-default-rtdb.firebaseio.com/userDataRecords.json", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        fullName, roll, email: user.email, interests
+                                    }),
+                                })
+                                    .then((res) => {
+                                        if (res.ok) {
+                                            setUserData({
+                                                fullName: "",
+                                                roll: "",
+                                                email: "",
+                                                interests: ""
+                                            });
+                                            // Display the success popup upon successful registration
+                                            setFormSubmitted(true);
+                                        } else {
+                                            handleShowPopup('Registration failed.');
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.error("Error during registration: " + error.message);
+                                    });
+                            } else {
+                                handleShowPopup('Please use your college email.');
+                            }
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error reading data: " + error.message);
                 });
-                if (res.ok) {
-                    setUserData({
-                        fullName: "",
-                        roll: "",
-                        email: "",
-                        interests: ""
-                    });
-                    alert('Joined successfully'); // Show popup before navigating
-                    router.push('/'); // Navigate after showing the popup
-                }
-                // No need to handle errors here, as the popup will be shown for errors as well
-            } else {
-                handleShowPopup('Please use your college email.');
-            }
         } else {
             handleShowPopup('Please fill all fields.');
         }
     };
-
-
 
     let name, value
     const postUserData = (event) => {
@@ -79,7 +121,6 @@ const StudentForm = () => {
         value = event.target.value;
         setUserData({ ...userData, [name]: value })
     };
-
 
     return (
         <AuthContextProvider>
@@ -93,22 +134,17 @@ const StudentForm = () => {
                             background-size: cover;
                             background-repeat: no-repeat;
                         }
-
                     `,
                     }}
                 />
 
                 <style jsx>{`
-    @media (max-width: 767px) {
-        div {
-            margin-top: 0px;
-        }
-    }
-`}</style>
-
-
-
-
+                    @media (max-width: 767px) {
+                        div {
+                            margin-top: 0px;
+                        }
+                    }
+                `}</style>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
                     <div style={{ width: '100%', maxWidth: '400px', padding: '20px', backgroundColor: 'rgba(255, 255, 255, 0.8)', borderRadius: '8px', boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)', marginTop: '150px', marginBottom: '50px' }}>
                         <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '20px', textAlign: 'center', color: 'black' }}>Student Registration Form</h2>
@@ -166,6 +202,9 @@ const StudentForm = () => {
                     </div>
                     {showPopup && (
                         <Popup message={popupMessage} onClose={handleClosePopup} />
+                    )}
+                    {formSubmitted && (
+                        <Popup message="Registration successful!" onClose={handleClosePopup} />
                     )}
                 </div>
             </>

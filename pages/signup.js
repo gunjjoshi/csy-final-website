@@ -5,11 +5,13 @@ import Footer from '../app/components/footer';
 import Navbar from '../app/components/navbar';
 import StudentForm from '../app/components/register'
 import { AuthContextProvider } from '../app/context/AuthContext';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const signup = () => {
     const router = useRouter();
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
     useEffect(() => {
         // Check if the user arrived via the button click
         if ((typeof window !== 'undefined' && !router.query.fromButton)) {
@@ -33,7 +35,7 @@ const signup = () => {
                     }}
                 />
                 <Navbar position="fixed" />
-                <StudentForm />
+                <StudentForm formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />
                 <Footer />
             </div></AuthContextProvider>
     )

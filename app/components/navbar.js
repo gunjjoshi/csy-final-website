@@ -18,6 +18,8 @@ const Navbar = () => {
     const [popupMessage, setPopupMessage] = useState('');
     const [emailExists, setEmailExists] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
 
     const handleShowPopup = (message) => {
         setPopupMessage(message);
@@ -130,8 +132,11 @@ const Navbar = () => {
     }, [user]);
 
     const handleButtonClick = () => {
-        router.push('/signup?fromButton=true');
+        if (!formSubmitted) {
+            router.push('/signup?fromButton=true');
+        }
     };
+
 
     return (
         <AuthContextProvider>
