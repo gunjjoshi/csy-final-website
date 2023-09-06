@@ -1,11 +1,14 @@
-"use client"
+import firebase from 'firebase/app'; // Import only the base Firebase module
+import 'firebase/auth';
+import 'firebase/database';
 import styles from '../page.module.css';
 import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
-import { auth } from '../firebase';
 import { useRouter } from 'next/router';
 import Popup from './Popup';
 import { AuthContextProvider } from '../context/AuthContext';
+import { auth, usersRef, database } from '../firebase';
+import { get, ref } from 'firebase/database';
 
 const Navbar = () => {
     const router = useRouter();
@@ -13,6 +16,8 @@ const Navbar = () => {
     const [user, setUser] = useState(authUser);
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
+    const [emailExists, setEmailExists] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const handleShowPopup = (message) => {
         setPopupMessage(message);
@@ -26,6 +31,39 @@ const Navbar = () => {
     const handleSignIn = async () => {
         try {
             await googleSignIn();
+            const userEmail = auth.currentUser.email;
+            const allowedDomain = '@iiitkottayam.ac.in';
+
+            if (userEmail.endsWith(allowedDomain)) {
+                const usersRef = ref(database, 'userDataRecords');
+
+                get(usersRef)
+                    .then((snapshot) => {
+                        if (snapshot.exists()) {
+                            let emailExists = false;
+                            snapshot.forEach((childSnapshot) => {
+                                const user = childSnapshot.val();
+                                if (user.email === userEmail) {
+                                    emailExists = true;
+                                    return; // Exit the loop when a match is found
+                                }
+                            });
+
+                            if (emailExists) {
+                                // Email exists in the database
+                                // alert('Email exists in the database.');
+                                setEmailExists(true);
+                            } else {
+                                // Email does not exist in the database
+                                // alert('Email does not exist in the database.');
+                                setEmailExists(false);
+                            }
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error reading data: " + error.message);
+                    });
+            }
         } catch (error) {
             console.log(error);
         }
@@ -47,11 +85,29 @@ const Navbar = () => {
                 const allowedDomain = '@iiitkottayam.ac.in';
 
                 if (userEmail.endsWith(allowedDomain)) {
+                    // Check if the email exists in the database
+                    const usersRef = ref(database, 'users'); // Use the 'database' object
+
+                    get(usersRef).then((snapshot) => {
+                        if (snapshot.exists()) {
+                            snapshot.forEach((childSnapshot) => {
+                                const user = childSnapshot.val();
+                                if (user.email === userEmail) {
+                                    setEmailExists(true);
+                                    return; // Exit the loop when a match is found
+                                }
+                            });
+                        }
+                    }).catch((error) => {
+                        console.error("Error reading data: " + error.message);
+                    });
+
                     setUser(currentUser);
                     const url = new URL(window.location.href);
                     url.searchParams.set('userEmail', userEmail);
                     window.history.replaceState(null, '', url);
                 } else {
+                    console.log("Email domain does not match");
                     handleShowPopup('Please use your college email to Sign Up.')
                     auth.signOut();
                 }
@@ -139,16 +195,15 @@ const Navbar = () => {
                                             <button onClick={handleSignOut} type="button" className={`btn btn-danger ${styles.customButton} mx-2`}>
                                                 Sign out
                                             </button>
+                                            {!emailExists ? (
+                                                <button onClick={handleButtonClick} type="button" className={`btn btn-primary ${styles.customButton} mx-2`}>
+                                                    Join
+                                                </button>
+                                            ) : null}
                                         </div>
                                     ) : (
                                         <button onClick={handleSignIn} type="button" className={`btn btn-success ${styles.customButton} mx-2`}>
                                             Sign In
-                                        </button>
-                                    )}
-
-                                    {user && (
-                                        <button onClick={handleButtonClick} type="button" className={`btn btn-primary ${styles.customButton} mx-2`}>
-                                            Join
                                         </button>
                                     )}
                                 </div>
@@ -159,11 +214,14 @@ const Navbar = () => {
                 {showPopup && (
                     <Popup message={popupMessage} onClose={handleClosePopup} />
                 )}
+                {alertMessage && (
+                    <div className="alert alert-info">
+                        {alertMessage}
+                    </div>
+                )}
             </div>
         </AuthContextProvider>
     );
 };
 
 export default Navbar;
-
-
