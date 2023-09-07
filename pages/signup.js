@@ -50,9 +50,6 @@ const Signup = () => {
             router.push('/');
         }
     };
-
-
-
     return (
         <AuthContextProvider>
             <div>
