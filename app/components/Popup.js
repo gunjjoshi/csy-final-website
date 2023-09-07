@@ -1,5 +1,3 @@
-// Popup.js
-
 import React from 'react';
 import './Popup.css'; // Import your CSS file for styling
 

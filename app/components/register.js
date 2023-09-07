@@ -4,7 +4,6 @@ import { AuthContextProvider } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import Popup from './Popup';
 import { auth, addUserRecord, checkUserExists } from '../firebase';
-// Import 'auth' and Firestore functions from your 'firebase.js'
 
 const StudentForm = () => {
     const router = useRouter();
@@ -14,6 +13,18 @@ const StudentForm = () => {
     const [popupMessage, setPopupMessage] = useState('');
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [emailExists, setEmailExists] = useState(false);
+
+    useEffect(() => {
+        const checkUserExistence = async () => {
+            if (user) {
+                const exists = await checkUserExists(user.email);
+                setEmailExists(exists);
+            }
+            setLoading(false);
+        };
+
+        checkUserExistence();
+    }, [user]);
 
     const handleShowPopup = (message) => {
         setPopupMessage(message);
@@ -29,19 +40,12 @@ const StudentForm = () => {
         }
     };
 
-    useEffect(() => {
-        const checkAuthentication = async () => {
-            await new Promise((resolve) => setTimeout(resolve, 50));
-            setLoading(false);
-        };
-        checkAuthentication();
-    }, [user]);
 
     const [userData, setUserData] = useState({
-        fullName: "",
-        roll: "",
-        email: "",
-        interests: ""
+        fullName: '',
+        roll: '',
+        email: '',
+        interests: '',
     });
 
     const handleSubmit = async (e) => {
@@ -51,7 +55,6 @@ const StudentForm = () => {
         if (fullName && roll && interests) {
             try {
                 // Check if the email exists in Firestore
-                const emailExists = await checkUserExists(user?.email);
                 if (emailExists) {
                     handleShowPopup('You have already registered.');
                 } else {
@@ -70,10 +73,10 @@ const StudentForm = () => {
                         console.log('User data submitted:', userData); // Add this line for logging
 
                         setUserData({
-                            fullName: "",
-                            roll: "",
-                            email: "",
-                            interests: "",
+                            fullName: '',
+                            roll: '',
+                            email: '',
+                            interests: '',
                         });
 
                         // Display the success popup upon successful registration
@@ -83,13 +86,12 @@ const StudentForm = () => {
                     }
                 }
             } catch (error) {
-                console.error("Error during registration: " + error.message);
+                console.error('Error during registration: ' + error.message);
             }
         } else {
             handleShowPopup('Please fill all fields.');
         }
     };
-
 
     let name, value;
     const postUserData = (event) => {
@@ -121,10 +123,42 @@ const StudentForm = () => {
                         }
                     }
                 `}</style>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-                    <div style={{ width: '100%', maxWidth: '400px', padding: '20px', backgroundColor: 'rgba(255, 255, 255, 0.8)', borderRadius: '8px', boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)', marginTop: '150px', marginBottom: '50px' }}>
-                        <h2 style={{ fontSize: '24px', fontWeight: '600', marginBottom: '20px', textAlign: 'center', color: 'black' }}>Student Registration Form</h2>
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        minHeight: '100vh',
+                    }}
+                >
+                    <div
+                        style={{
+                            width: '100%',
+                            maxWidth: '400px',
+                            padding: '20px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                            borderRadius: '8px',
+                            boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)',
+                            marginTop: '150px',
+                            marginBottom: '50px',
+                            filter: emailExists ? 'blur(5px)' : 'none', // Apply blur effect conditionally
+                        }}
+                    >
+                        <h2
+                            style={{
+                                fontSize: '24px',
+                                fontWeight: '600',
+                                marginBottom: '20px',
+                                textAlign: 'center',
+                                color: 'black',
+                                filter: emailExists ? 'blur(5px)' : 'none', // Apply blur effect conditionally
+                            }}
+                        >
+                            Student Registration Form
+                        </h2>
+
                         <form style={{ marginBottom: '20px' }}>
+
                             <div style={{ marginBottom: '20px' }}>
                                 <label htmlFor="fullName">Full Name:</label>
                                 <input
@@ -167,25 +201,36 @@ const StudentForm = () => {
                                 />
                             </div>
 
-                            <button
-                                type="submit"
-                                onClick={handleSubmit}
-                                style={{ backgroundColor: '#1dbf53', color: 'white', padding: '10px 20px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}
-                            >
-                                Submit
-                            </button>
                         </form>
+
+                        <button
+                            type="submit"
+                            onClick={handleSubmit}
+                            style={{
+                                backgroundColor: '#1dbf53',
+                                color: 'white',
+                                padding: '10px 20px',
+                                borderRadius: '4px',
+                                border: 'none',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            Submit
+                        </button>
                     </div>
                     {showPopup && (
                         <Popup message={popupMessage} onClose={handleClosePopup} />
                     )}
                     {formSubmitted && (
-                        <Popup message="Registration successful!" onClose={handleClosePopup} />
+                        <Popup
+                            message="Registration successful!"
+                            onClose={handleClosePopup}
+                        />
                     )}
                 </div>
             </>
         </AuthContextProvider>
     );
-}
+};
 
 export default StudentForm;
