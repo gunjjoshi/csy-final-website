@@ -1,14 +1,15 @@
 import firebase from 'firebase/app'; // Import only the base Firebase module
 import 'firebase/auth';
-import 'firebase/database';
+import 'firebase/firestore'; // Import Firestore module
 import styles from '../page.module.css';
 import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
 import { useRouter } from 'next/router';
 import Popup from './Popup';
 import { AuthContextProvider } from '../context/AuthContext';
-import { auth, usersRef, database } from '../firebase';
-import { get, ref } from 'firebase/database';
+import { auth } from '../firebase'; // Remove import for 'database' and 'usersRef'
+import { checkUserExists } from '../firebase';
+
 
 const Navbar = () => {
     const router = useRouter();
@@ -19,7 +20,6 @@ const Navbar = () => {
     const [emailExists, setEmailExists] = useState(false);
     const [alertMessage, setAlertMessage] = useState('');
     const [formSubmitted, setFormSubmitted] = useState(false);
-
 
     const handleShowPopup = (message) => {
         setPopupMessage(message);
@@ -37,33 +37,20 @@ const Navbar = () => {
             const allowedDomain = '@iiitkottayam.ac.in';
 
             if (userEmail.endsWith(allowedDomain)) {
-                const usersRef = ref(database, 'userDataRecords');
+                // Check if the email exists in Firestore
+                const firestore = firebase.firestore();
+                const usersRef = firestore.collection('userDataRecords');
 
-                get(usersRef)
-                    .then((snapshot) => {
-                        if (snapshot.exists()) {
-                            let emailExists = false;
-                            snapshot.forEach((childSnapshot) => {
-                                const user = childSnapshot.val();
-                                if (user.email === userEmail) {
-                                    emailExists = true;
-                                    return; // Exit the loop when a match is found
-                                }
-                            });
-
-                            if (emailExists) {
-                                // Email exists in the database
-                                // alert('Email exists in the database.');
-                                setEmailExists(true);
-                            } else {
-                                // Email does not exist in the database
-                                // alert('Email does not exist in the database.');
-                                setEmailExists(false);
-                            }
+                usersRef.where('email', '==', userEmail).get()
+                    .then((querySnapshot) => {
+                        if (!querySnapshot.empty) {
+                            setEmailExists(true);
+                        } else {
+                            setEmailExists(false);
                         }
                     })
                     .catch((error) => {
-                        console.error("Error reading data: " + error.message);
+                        console.error("Error querying Firestore: " + error.message);
                     });
             }
         } catch (error) {
@@ -87,23 +74,6 @@ const Navbar = () => {
                 const allowedDomain = '@iiitkottayam.ac.in';
 
                 if (userEmail.endsWith(allowedDomain)) {
-                    // Check if the email exists in the database
-                    const usersRef = ref(database, 'users'); // Use the 'database' object
-
-                    get(usersRef).then((snapshot) => {
-                        if (snapshot.exists()) {
-                            snapshot.forEach((childSnapshot) => {
-                                const user = childSnapshot.val();
-                                if (user.email === userEmail) {
-                                    setEmailExists(true);
-                                    return; // Exit the loop when a match is found
-                                }
-                            });
-                        }
-                    }).catch((error) => {
-                        console.error("Error reading data: " + error.message);
-                    });
-
                     setUser(currentUser);
                     const url = new URL(window.location.href);
                     url.searchParams.set('userEmail', userEmail);
@@ -131,11 +101,12 @@ const Navbar = () => {
         checkAuthentication();
     }, [user]);
 
-    const handleButtonClick = () => {
+    const handleButtonClick = async () => {
         if (!formSubmitted) {
-            router.push('/signup?fromButton=true');
+            router.push('/signup?fromButton=true'); // Redirect the user to the signup page
         }
     };
+
 
 
     return (

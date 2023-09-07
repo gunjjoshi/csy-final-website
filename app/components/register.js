@@ -1,13 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { UserAuth } from '../context/AuthContext';
 import { AuthContextProvider } from '../context/AuthContext';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Popup from './Popup';
-import { auth, usersRef, database } from '../firebase';
-import { get, ref } from 'firebase/database';
-import 'firebase/auth';
-import 'firebase/database';
+import { auth, addUserRecord, checkUserExists } from '../firebase';
+// Import 'auth' and Firestore functions from your 'firebase.js'
 
 const StudentForm = () => {
     const router = useRouter();
@@ -50,76 +47,55 @@ const StudentForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { fullName, roll, interests } = userData;
-        console.log('Submitted:', { fullName, roll, interests });
 
         if (fullName && roll && interests) {
-            const usersRef = ref(database, 'userDataRecords');
+            try {
+                // Check if the email exists in Firestore
+                const emailExists = await checkUserExists(user?.email);
+                if (emailExists) {
+                    handleShowPopup('You have already registered.');
+                } else {
+                    // Continue with registration
+                    if (user?.email?.endsWith('@iiitkottayam.ac.in')) {
+                        const userData = {
+                            fullName,
+                            roll,
+                            email: user.email,
+                            interests,
+                        };
 
-            get(usersRef)
-                .then((snapshot) => {
-                    if (snapshot.exists()) {
-                        let emailExists = false;
-                        snapshot.forEach((childSnapshot) => {
-                            const user = childSnapshot.val();
-                            const userEmail = auth.currentUser.email;
+                        // Add user data to Firestore
+                        await addUserRecord(userData);
 
-                            if (user.email === userEmail) {
-                                emailExists = true;
-                                return; // Exit the loop when a match is found
-                            }
+                        console.log('User data submitted:', userData); // Add this line for logging
+
+                        setUserData({
+                            fullName: "",
+                            roll: "",
+                            email: "",
+                            interests: "",
                         });
 
-                        if (emailExists) {
-                            handleShowPopup('You have already registered.');
-                            return; // Prevent form submission
-                        } else {
-                            // Continue with registration
-                            if (user?.email?.endsWith('@iiitkottayam.ac.in')) {
-                                fetch("https://csyclub-1e1af-default-rtdb.firebaseio.com/userDataRecords.json", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify({
-                                        fullName, roll, email: user.email, interests
-                                    }),
-                                })
-                                    .then((res) => {
-                                        if (res.ok) {
-                                            setUserData({
-                                                fullName: "",
-                                                roll: "",
-                                                email: "",
-                                                interests: ""
-                                            });
-                                            // Display the success popup upon successful registration
-                                            setFormSubmitted(true);
-                                        } else {
-                                            handleShowPopup('Registration failed.');
-                                        }
-                                    })
-                                    .catch((error) => {
-                                        console.error("Error during registration: " + error.message);
-                                    });
-                            } else {
-                                handleShowPopup('Please use your college email.');
-                            }
-                        }
+                        // Display the success popup upon successful registration
+                        setFormSubmitted(true);
+                    } else {
+                        handleShowPopup('Please use your college email.');
                     }
-                })
-                .catch((error) => {
-                    console.error("Error reading data: " + error.message);
-                });
+                }
+            } catch (error) {
+                console.error("Error during registration: " + error.message);
+            }
         } else {
             handleShowPopup('Please fill all fields.');
         }
     };
 
-    let name, value
+
+    let name, value;
     const postUserData = (event) => {
         name = event.target.name;
         value = event.target.value;
-        setUserData({ ...userData, [name]: value })
+        setUserData({ ...userData, [name]: value });
     };
 
     return (
