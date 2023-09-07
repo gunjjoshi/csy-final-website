@@ -47,7 +47,7 @@ background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,
         <div className={styles.bg} style={{ fontFamily: 'Cascadia Code, monospace' }}>
           <div
             className={styles.heading}
-            style={{ marginTop: "10px", color: "rgb(252, 3, 3)" }}
+            style={{ marginTop: "-2rem", color: "rgb(252, 3, 3)" }}
           >
             <div
               className={`${styles.radioGroup} d-flex flex-wrap justify-content-center`}
@@ -66,19 +66,25 @@ background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,
           <ImageComponent
             imageSrc1="/images/director.jpg"
             name1="Dr. Rajiv V Dharaskar"
+            namex1="Director, IIIT Kottayam"
             imageSrc2="images/registrar1.jpg"
             name2="Dr. M. Radhakrishnan"
+            namex2="Registar, IIIT Kottayam"
             imageSrc3="/images/pic.jpg"
             name3="Prof P. Mohanan"
+            namex3="PIC-Academics, IIIT Kottayam"
           />
           <br />
           <ImageComponent
             imageSrc1="/images/ebin1.jpg"
             name1="Dr. Ebin Deni Raj"
+            namex1="Associate Dean IIIT Kottayam"
             imageSrc2="/images/panchami1.jpg"
             name2="Dr. Panchami V"
+            namex2="HoD, Department of Cyber Security IIIT Kottayam"
             imageSrc3="/images/lavanya.jpg"
             name3="Dr. Lavanya Settipalli"
+            namex3="Asst. Professor, Department of Cyber Security IIIT Kottayam"
           />
           <br />
 

@@ -6,6 +6,7 @@ import Footer from '../app/components/footer';
 import Head from 'next/head';
 import { AuthContextProvider } from '../app/context/AuthContext';
 import 'firebase/auth';
+import Abc from '../app/components/Abc';
 
 const Home_Page = () => {
     const [windowWidth, setWindowWidth] = useState(0);
@@ -87,6 +88,7 @@ background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,
                             <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem', marginRight: '2rem' }}>
                                 Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
                             </div>
+
                             {/* <div >
                                 <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginRight: '3.2rem' }}>Sign Up</button>
                                 <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Login</button>
@@ -94,31 +96,16 @@ background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,
                         </div>
                     </div>
                 ) : ( // Small screens layout (same as before)
-                    <div style={{ marginTop: '-13.5rem', marginBottom: '14.5rem' }}>
+                    <div style={{ marginTop: '-38vh', marginBottom: '20vh' }}>
                         <div style={{ fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             {/* Logo Container */}
                             <div style={logoStyles}>
                                 <img src="/CSC_Logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', marginTop: '10rem', marginBottom: '10rem' }} />
                             </div>
 
-                            {/* Heading */}
                             <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
 
-                            {/* Description */}
-                            <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem' }}>
-                                Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
-                            </div>
-
-                            {/* Buttons */}
-                            {/* <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '10rem' }}>
-                                <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Sign Up</button>
-                                <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginBottom: '30rem' }}>Login</button>
-                            </div> */}
-
-                            {/* Arrow */}
-                            {/* <div style={{ marginTop: '2rem', marginBottom: '10rem' }}>
-                        <img src="/arrow.svg" alt="Arrow" style={{ width: '30px', marginBottom: '10rem', height: '30px' }} />
-                    </div> */}
+                            <Abc />
                         </div>
                     </div>
                 )}

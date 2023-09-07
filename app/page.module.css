@@ -35,31 +35,35 @@
   /* Add other styles as needed */
 }
 
-/* Rest of your CSS styles for other components and elements */
+.eventclass {
+  padding: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-width: 3.79px;
+  border-style: solid;
+  border-image-source: linear-gradient(to right, #3ACD6B, black);
+  border-image-slice: 1;
+  animation: moveGradient 8s linear infinite;
+}
 
-/* components/navbar.module.css */
-
-
-
-/* Add other existing CSS styles here */
-
-/* Adjust other existing CSS styles as needed */
-
- .eventclass{
-    padding: 15px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    /* border: 2px dashed #3ACD6B; */
-    background-image: repeating-linear-gradient(-40deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px), repeating-linear-gradient(50deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px), repeating-linear-gradient(140deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px), repeating-linear-gradient(230deg, #3acc6b, #3acc6b 24px, transparent 30px, transparent 46.8px, #3acc6b 51px);
-background-size: 4px calc(100% + 66.58px), calc(100% + 66.58px) 4px, 4px calc(100% + 66.58px) , calc(100% + 66.58px) 4px;
-background-position: 0 0, 0 0, 100% 0, 0 100%;
-background-repeat: no-repeat;
-animation: borderAnimation 2.5s infinite linear;
+@keyframes moveGradient {
+  0% {
+    border-image-source: linear-gradient(to right, #3ACD6B, black);
   }
-  @keyframes borderAnimation {
-    from { background-position: 0 0, -66.58px 0, 100% -66.58px, 0 100%; }
-    to { background-position: 0 -66.58px, 0 0, 100% 0, -66.58px 100%; }
-    }
+  25% {
+    border-image-source: linear-gradient(to right, black, #3ACD6B);
+  }
+  50% {
+    border-image-source: linear-gradient(to right, #3ACD6B, black);
+  }
+  75% {
+    border-image-source: linear-gradient(to right, black, #3ACD6B);
+  }
+  100% {
+    border-image-source: linear-gradient(to right, #3ACD6B, black);
+  }
+}
+
   .customButton {
     margin-right: 1rem;
     background-color: #3ACD6B !important;

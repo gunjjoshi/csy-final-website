@@ -129,6 +129,7 @@ const StudentForm = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         minHeight: '100vh',
+                        margin: '0 13px', // Add margin to both left and right on smaller screens
                     }}
                 >
                     <div
