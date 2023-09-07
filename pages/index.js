@@ -56,9 +56,9 @@ const Home_Page = () => {
                         __html: `
             body {
               font-family: 'Cascadia Code', 'Courier New', 'monospace';
-              background-image: url("background.png");
-              background-size: cover;
-              background-repeat: no-repeat;
+                 
+background: rgb(0,0,0);
+background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 21%, rgba(0,0,0,1) 26%, rgba(5,17,9,1) 32%, rgba(8,28,14,1) 39%, rgba(10,36,18,1) 45%, rgba(14,49,25,1) 54%, rgba(16,58,30,1) 58%, rgba(19,69,35,1) 65%, rgba(23,82,42,1) 71%, rgba(29,102,53,1) 76%, rgba(32,115,60,1) 81%, rgba(36,128,67,1) 87%, rgba(39,137,72,1) 93%, rgba(39,137,72,1) 100%);
             }
             /* Add other global CSS styles here */
             .navbar {
@@ -73,7 +73,7 @@ const Home_Page = () => {
                 {/* Conditionally render the HomeNavbar based on the showNavbar state */}
                 <Navbar />
                 {windowWidth > 768 ? ( // Large screens layout
-                    <div style={{ display: 'flex', fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', background: 'url("background.png")', backgroundSize: 'cover', height: '100vh' }}>
+                    <div style={{ display: 'flex', fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', height: '100vh' }}>
                         {/* Left Half - Logo */}
                         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                             <div style={logoStyles}>
@@ -95,7 +95,7 @@ const Home_Page = () => {
                     </div>
                 ) : ( // Small screens layout (same as before)
                     <div style={{ marginTop: '-13.5rem', marginBottom: '14.5rem' }}>
-                        <div style={{ fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', background: 'url("background.png")', backgroundSize: 'cover', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             {/* Logo Container */}
                             <div style={logoStyles}>
                                 <img src="/CSC_Logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', marginTop: '10rem', marginBottom: '10rem' }} />

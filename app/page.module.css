@@ -1,21 +1,21 @@
 /* background   */
-.bg {
+/* .bg {
   background-image: url("/background.png");
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
-  }
+  } */
   @font-face {
     font-family: 'Cascadia Code', 'Courier New', 'monospace';
     src: url('/Cascadia.ttf') format('truetype');
     /* Add more font formats if necessary */
     /* Specify different paths based on your project structure */
   }
-  .custom-background {
+  /* .custom-background {
     background-image: url('/background.png');
-  }
+  } */
 /* till here */
 /* page.module.css */
 .navbarContainer {
@@ -124,9 +124,9 @@ animation: borderAnimation 2.5s infinite linear;
       order: 2;
       margin-right: 0;
     }
-    .custom-background {
+    /* .custom-background {
       background-image: url('/backgroundPhone.png');
-    }
+    } */
     .navbar-collapse {
       order: 3;
     }
