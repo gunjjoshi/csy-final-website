@@ -102,7 +102,7 @@ const Abc = () => {
 
     const handleButtonClick = async () => {
         if (!formSubmitted) {
-            router.push('/signup?fromButton=true'); // Redirect the user to the signup page
+            router.push('/signup?fromButton=true');
         }
     };
     return (
