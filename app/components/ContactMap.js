@@ -13,7 +13,6 @@ const Contact = () => {
         <link rel="icon" type="image/x-icon" href="CSC_Logo.ico" />
       </Head>
 
-      {/* CSS for the Navbar */}
       <style jsx global>{`
         body {
           font-family: 'Cascadia Code', 'Courier New', 'monospace';
@@ -30,7 +29,6 @@ const Contact = () => {
 
       <Navbar position="fixed" />
 
-      {/* Contact content and Map */}
       <div className="contact-container">
         <div className="contact-details">
           <h1>Contact Us</h1>
@@ -39,7 +37,6 @@ const Contact = () => {
           <p>Address: Indian Institute of Information Technology Kottayam,
 
             Valavoor P O, Pala, Kottayam, Kerala, India - 686635</p>
-          {/* Add any other contact details you want to display here */}
         </div>
 
         <div className="map">
@@ -55,7 +52,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Style for the contact container */}
       <style jsx>{`
         .contact-container {
           display: flex;
@@ -104,14 +100,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-
-
-
-{/* <p>Email: csyclub@iiitkottayam.ac.in</p>
-          <p>Phone: +91-0482-2202189</p>
-          <p>Address: Indian Institute of Information Technology Kottayam,
-
-            Valavoor P O, Pala, Kottayam, Kerala, India - 686635</p>
-
-        </div > */}
