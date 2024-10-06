@@ -1,13 +1,13 @@
-import firebase from 'firebase/app'; // Import only the base Firebase module
+import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore'; // Import Firestore module
+import 'firebase/firestore';
 import styles from '../page.module.css';
 import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
 import { useRouter } from 'next/router';
 import Popup from './Popup';
 import { AuthContextProvider } from '../context/AuthContext';
-import { auth } from '../firebase'; // Remove import for 'database' and 'usersRef'
+import { auth } from '../firebase';
 import { checkUserExists } from '../firebase';
 
 const Abc = () => {
@@ -36,7 +36,6 @@ const Abc = () => {
             const allowedDomain = '@iiitkottayam.ac.in';
 
             if (userEmail.endsWith(allowedDomain)) {
-                // Check if the email exists in Firestore
                 const firestore = firebase.firestore();
                 const usersRef = firestore.collection('userDataRecords');
 
