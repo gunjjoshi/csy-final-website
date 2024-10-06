@@ -16,22 +16,6 @@ const TextComponent = ({ title }) => {
                 <br></br>
                 <br></br>
             </Row>
-            {/* <Row>
-            <Col xs={6} md={4}>
-                    <Image src="/images.png" alt="Media" width={300} height={300} className={styles.eventclass} />
-                    <h4 style={{ color: 'white' }} align="center" className='whitetext'>Patrons</h4>
-            </Col>
-            <Col xs={6} md={4}>
-                    <Image src="/images.png" alt="Media" width={300} height={300} className={styles.eventclass} />
-            </Col>
-            <Col xs={6} md={4}>
-                    <Image src="/images.png" alt="Media" width={300} height={300} className={styles.eventclass} />
-            </Col>
-            
-            
-
-
-            </Row> */}
         </Container >
     );
 };
