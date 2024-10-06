@@ -12,8 +12,6 @@ const TextComponent = ({ title }) => {
                 <Col >
                     <div style={{ color: 'white' }} className="d-flex flex-column justify-content-center h-100 whitetext">
                         <center><h1 style={{ color: 'white' }} className='whitetext'>{title}</h1></center>
-
-                        {/* <Button variant="primary" style={{ backgroundColor: '#3acc6b', color: 'black', borderColor: '#3acc6b' }}>Read More</Button> */}
                     </div>
                 </Col>
                 <br></br>
