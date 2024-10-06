@@ -7,9 +7,7 @@ const TextComponent = ({ title }) => {
     return (
         <Container>
             <Row>
-
-
-                <Col >
+                <Col>
                     <div style={{ color: 'white' }} className="d-flex flex-column justify-content-center h-100 whitetext">
                         <center><h1 style={{ color: 'white' }} className='whitetext'>{title}</h1></center>
                     </div>
@@ -17,13 +15,7 @@ const TextComponent = ({ title }) => {
                 <br></br>
                 <br></br>
                 <br></br>
-
-
-
             </Row>
-
-
-
             {/* <Row>
             <Col xs={6} md={4}>
                     <Image src="/images.png" alt="Media" width={300} height={300} className={styles.eventclass} />
