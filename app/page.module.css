@@ -1,18 +1,13 @@
 @font-face {
     font-family: 'Cascadia Code', 'Courier New', 'monospace';
     src: url('/Cascadia.ttf') format('truetype');
-  }
-  /* .custom-background {
-    background-image: url('/background.png');
-  } */
-/* till here */
-/* page.module.css */
+}
 .navbarContainer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 9999; /* Ensures Navbar stays on top of the content */
+  z-index: 9999;
 }
 /* page.module.css */
 
