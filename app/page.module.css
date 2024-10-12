@@ -1,8 +1,6 @@
 @font-face {
     font-family: 'Cascadia Code', 'Courier New', 'monospace';
     src: url('/Cascadia.ttf') format('truetype');
-    /* Add more font formats if necessary */
-    /* Specify different paths based on your project structure */
   }
   /* .custom-background {
     background-image: url('/background.png');
