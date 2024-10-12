@@ -1,13 +1,4 @@
-/* background   */
-/* .bg {
-  background-image: url("/background.png");
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center bottom;
-  } */
-  @font-face {
+@font-face {
     font-family: 'Cascadia Code', 'Courier New', 'monospace';
     src: url('/Cascadia.ttf') format('truetype');
     /* Add more font formats if necessary */
