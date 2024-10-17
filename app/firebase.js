@@ -22,7 +22,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const firestore = getFirestore(firebaseApp);
-const userDataCollection = collection(firestore, 'userDataRecords'); // Create the collection reference
+const userDataCollection = collection(firestore, 'userDataRecords');
 
 const addUserRecord = async (userData) => {
     const userRef = doc(firestore, 'userDataRecords', userData.email);
