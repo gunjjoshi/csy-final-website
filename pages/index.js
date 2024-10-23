@@ -29,7 +29,6 @@ const Home_Page = () => {
         marginTop: windowWidth <= 768 ? '20rem' : '1rem',
     };
     useEffect(() => {
-        // Initialize Bootstrap JavaScript when the component is mounted
         const bootstrapScript = document.createElement('script');
         bootstrapScript.src =
             'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js';
@@ -39,7 +38,6 @@ const Home_Page = () => {
         document.body.appendChild(bootstrapScript);
 
         return () => {
-            // Cleanup: remove the script when the component is unmounted
             document.body.removeChild(bootstrapScript);
         };
     }, []);
@@ -71,40 +69,29 @@ background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,
           `,
                     }}
                 />
-                {/* Conditionally render the HomeNavbar based on the showNavbar state */}
                 <Navbar />
-                {windowWidth > 768 ? ( // Large screens layout
+                {windowWidth > 768 ? (
                     <div style={{ display: 'flex', fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', height: '100vh' }}>
-                        {/* Left Half - Logo */}
                         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
                             <div style={logoStyles}>
                                 <img src="/CSC_Logo.png" alt="Logo" style={{ width: '120%', height: '120%', objectFit: 'contain' }} />
                             </div>
                         </div>
 
-                        {/* Right Half - Headings and Buttons */}
                         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '70px' }}>
                             <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
                             <div style={{ fontSize: '1.2rem', lineHeight: '1.5', maxWidth: '800px', marginBottom: '2rem', marginRight: '2rem' }}>
                                 Join the Cyber Security Club of IIIT Kottayam as we explore new cutting edge technology.
                             </div>
-
-                            {/* <div >
-                                <button style={{ marginBottom: '1rem', padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white', marginRight: '3.2rem' }}>Sign Up</button>
-                                <button style={{ padding: '0.5rem 1.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: 'black', borderRadius: '0.7rem', boxShadow: '5px 5px 0 rgba(0, 0, 0, 0.2)', background: 'white' }}>Login</button>
-                            </div> */}
                         </div>
                     </div>
-                ) : ( // Small screens layout (same as before)
+                ) : (
                     <div style={{ marginTop: '-38vh', marginBottom: '20vh' }}>
                         <div style={{ fontFamily: 'Cascadia Code, monospace', color: 'white', textAlign: 'center', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                            {/* Logo Container */}
                             <div style={logoStyles}>
                                 <img src="/CSC_Logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', marginTop: '10rem', marginBottom: '10rem' }} />
                             </div>
-
                             <div style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>Cyber Security Club</div>
-
                             <Abc />
                         </div>
                     </div>
