@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Navbar from '../app/components/navbar';
 import StudentForm from '../app/components/register';
-import Popup from '../app/components/Popup'; // Import the Popup component
+import Popup from '../app/components/Popup'; 
 import { auth, checkUserExists } from '../app/firebase'; // Import the checkUserExists function
 import { AuthContextProvider } from '../app/context/AuthContext';
 import Footer from '../app/components/footer';
