@@ -7,7 +7,7 @@ import { UserAuth } from "../context/AuthContext";
 import { useRouter } from 'next/router';
 import Popup from './Popup';
 import { AuthContextProvider } from '../context/AuthContext';
-import { auth } from '../firebase'; // Remove import for 'database' and 'usersRef'
+import { auth } from '../firebase';
 import { checkUserExists } from '../firebase';
 
 
