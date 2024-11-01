@@ -1,6 +1,6 @@
 import firebase from 'firebase/app'; 
 import 'firebase/auth';
-import 'firebase/firestore'; // Import Firestore module
+import 'firebase/firestore';
 import styles from '../page.module.css';
 import React, { useState, useEffect } from 'react';
 import { UserAuth } from "../context/AuthContext";
