@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'; // Import only the base Firebase module
+import firebase from 'firebase/app'; 
 import 'firebase/auth';
 import 'firebase/firestore'; // Import Firestore module
 import styles from '../page.module.css';
