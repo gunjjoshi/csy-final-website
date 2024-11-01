@@ -37,7 +37,6 @@ const Navbar = () => {
             const allowedDomain = '@iiitkottayam.ac.in';
 
             if (userEmail.endsWith(allowedDomain)) {
-                // Check if the email exists in Firestore
                 const firestore = firebase.firestore();
                 const usersRef = firestore.collection('userDataRecords');
 
