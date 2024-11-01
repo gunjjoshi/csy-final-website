@@ -10,7 +10,6 @@ import { AuthContextProvider } from '../context/AuthContext';
 import { auth } from '../firebase';
 import { checkUserExists } from '../firebase';
 
-
 const Navbar = () => {
     const router = useRouter();
     const { user: authUser, googleSignIn, logOut } = UserAuth();
