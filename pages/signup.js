@@ -10,7 +10,6 @@ import Footer from '../app/components/footer';
 const Signup = () => {
     const router = useRouter();
 
-    // Define the state variables for the popup
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState('');
 
