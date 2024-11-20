@@ -17,7 +17,6 @@ const CyberSecurityClub = () => {
                     padding: '2rem',
                 }}
             >
-                {/* Add some space at the top */}
                 <div style={{ marginTop: '3rem' }}>
 
                 </div>
