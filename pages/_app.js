@@ -1,4 +1,3 @@
-// pages/_app.js
 import '../app/globals.css';
 import React, { useState } from 'react';
 import { Analytics } from '@vercel/analytics/react';
@@ -9,7 +8,6 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
         <Analytics />
     </>
-
     )
 }
 
