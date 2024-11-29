@@ -22,7 +22,6 @@ const ImageComponent = ({
   return (
     <Container>
       <br />
-
       <center>
         <Row>
           <Col xs={12} md={4}>
