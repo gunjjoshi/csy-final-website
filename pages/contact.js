@@ -3,7 +3,6 @@ import Head from "next/head";
 import { AuthContextProvider } from "../app/context/AuthContext";
 import Script from "next/script";
 import { useState } from "react";
-
 import ContactMap from "../app/components/ContactMap";
 const Contact = () => {
     const [isChecked, setIsChecked] = useState(true);
